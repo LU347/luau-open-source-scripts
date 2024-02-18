@@ -13,7 +13,7 @@ The timer module provides functionality for creating and managing multiple timer
 
 Creates a new timer object with the given properties: name (string), duration (int), isRunning (boolean), startTime (int), currentTime (int). The timer is then inserted into Timer.timerList table to keep track of the object.
 
-```
+```lua
 Timer.timerList = {}
 
 function Timer.new(name, duration)
@@ -43,7 +43,7 @@ end
 
 Starts the timer and utilizes RunService's Heartbeat function to update the timer.
 
-```
+```lua
 function Timer:Start()
     if (not self.isRunning) then
         self.isRunning = true
