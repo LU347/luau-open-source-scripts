@@ -52,16 +52,17 @@ end
     Walkspeed is set to 0 if you want to add an animation while bending
     Adjust the wait() interval depending on the animation length
 ]]--
+
 function Earth:Bend(mousePosition)
     local rock = self.Model
     rock.Parent = workspace
 	rock.CFrame = self.Owner.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,Z_OFFSET)
+
+    local newForce = Instance.new("BodyForce")
+    newForce.Force = Vector3.new(0, workspace.Gravity * rock:GetMass(), 0)
+    newForce.Parent = rock
 	
-	local newForce = Instance.new("BodyForce")
-	newForce.Force = Vector3.new(0, workspace.Gravity * rock:GetMass(), 0)
-	newForce.Parent = rock
-	
-	rock.Velocity = CFrame.new(self.Owner.Character.HumanoidRootPart.Position, mousePosition).LookVector * THROW_SPEED
+    rock.Velocity = CFrame.new(self.Owner.Character.HumanoidRootPart.Position, mousePosition).LookVector * THROW_SPEED
     
     self.Owner.Character.Humanoid.WalkSpeed = 0
     wait(.25)
